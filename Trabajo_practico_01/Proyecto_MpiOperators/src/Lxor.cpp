@@ -19,7 +19,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
 	int rank, size;
 	double local_num;
-	int land;
+	int lxor;
 	int local_exp;
 	//Inicializar el programa
 	MPI_Init(NULL,NULL);
@@ -37,10 +37,10 @@ int main(int argc, char *argv[]) {
     }
     cout<<"El número del proceso "<<rank<<" es:"<<local_exp<<"\n";
     //Aplicar función de reducción
-    MPI_Reduce(&local_exp,&land,1,MPI_INT,MPI_LAND,0,MPI_COMM_WORLD);
+    MPI_Reduce(&local_exp,&lxor,1,MPI_INT,MPI_LXOR,0,MPI_COMM_WORLD);
     if (rank == 0) {
     	//Imprimir resultado
-	 cout<<"\nEl resultado del land lógico es :"<<land<<"\n";
+	 cout<<"\nEl resultado del lxor lógico es :"<<lxor<<"\n";
     }
 	MPI_Finalize();
 	return 0;
